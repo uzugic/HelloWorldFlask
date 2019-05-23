@@ -7,5 +7,4 @@ def hello_world():
  
 if __name__ == '__main__':
     app.secret_key = 'Qm9nZGEgbWUgbzUgemV6YQ=='
-    app.run(host='0.0.0.0',
-            port=8080)
+    app.run(host='0.0.0.0', port=8080)
