@@ -1,5 +1,5 @@
 # We are basing our builder image on openshift base-centos7 image
-FROM registry.redhat.io/ubi8
+FROM registry.redhat.io/ubi7
 
 # Inform users who's the maintainer of this builder image
 MAINTAINER micacar <mica@car>
@@ -9,22 +9,23 @@ MAINTAINER micacar <mica@car>
 
 # Set labels used in OpenShift to describe the builder images
 #LABEL io.k8s.description="Platform for serving static HTML files" \
-	  io.k8s.display-name="Lighttpd 1.4.35" \
-      io.openshift.expose-services="8080:http" \
-      io.openshift.tags="builder,html,lighttpd"
+#	  io.k8s.display-name="Lighttpd 1.4.35" \
+#      io.openshift.expose-services="8080:http" \
+#      io.openshift.tags="builder,html,lighttpd"
 
 # Install the required software, namely Lighttpd and
-RUN yum install -y python-setuptools;
-		easy_install pip;
-		pip install flask;
-		yum install git;
+RUN yum install -y python-setuptools
+RUN easy_install pip 
+RUN pip install flask
+RUN yum install -y git
     # clean yum cache files, as they are not needed and will only make the image bigger in the end
-    yum clean all -y
+RUN yum clean all -y
 
-RUN git remote add origin https://github.com/uzugic/HelloWorldFlask.git;
-	git pull origin master
+RUN git init
+RUN git remote add origin https://github.com/uzugic/HelloWorldFlask.git
+RUN git pull origin master
 	
-
+#RUN cd HelloWorldFlask
 
 # Defines the location of the S2I
 # Although this is defined in openshift/base-centos7 image it's repeated here
