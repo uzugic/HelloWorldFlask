@@ -3,7 +3,7 @@ app = Flask(__name__)
  
 @app.route('/')
 def hello_world():
-  return 'Hello'
+  return 'Hello world hello mica iz openshifta iz kontejnera'
  
 if __name__ == '__main__':
     app.secret_key = 'Qm9nZGEgbWUgbzUgemV6YQ=='
