@@ -14,7 +14,7 @@ MAINTAINER micacar <mica@car>
 #      io.openshift.tags="builder,html,lighttpd"
 
 # Install the required software, namely Lighttpd and
-RUN yum install -y python-setuptools
+#RUN yum install -y python-setuptools
 RUN easy_install pip 
 RUN pip install flask
 RUN yum install -y git
