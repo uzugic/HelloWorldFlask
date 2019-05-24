@@ -1,11 +1,11 @@
 def templatePath = 'https://raw.githubusercontent.com/uzugic/HelloWorldFlask/master/Dockerfile' 
-def templateName = 'flask-hello-world' 
+def templateName = 'HelloWorldFlask' 
 pipeline {
-  agent {
-    node {
-      label 'flask' 
-    }
-  }
+  //agent {
+    //node {
+      //label 'flask' 
+    //}
+  //}
   options {
     timeout(time: 2, unit: 'MINUTES') 
   }
@@ -14,6 +14,7 @@ pipeline {
         steps {
             script {
                 openshift.withCluster() {
+                  openshift.project() : "flask"
                     openshift.withProject() {
                         echo "Using project: ${openshift.project()}"
                     }
