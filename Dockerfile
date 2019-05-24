@@ -16,7 +16,7 @@ MAINTAINER micacar <mica@car>
 # Install the required software, namely Lighttpd and
 #RUN yum install -y python-setuptools
 RUN easy_install pip 
-RUN pip install flask
+RUN pip install flask flask-wtf flask-babel markdown flup
 RUN yum install -y git
     # clean yum cache files, as they are not needed and will only make the image bigger in the end
 RUN yum clean all -y
