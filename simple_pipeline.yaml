@@ -1,0 +1,9 @@
+kind: "BuildConfig"
+apiVersion: "v1"
+metadata:
+  name: "simple_flask_pipeline"
+spec:
+  strategy:
+    jenkinsPipelineStrategy:
+      jenkinsfile: Jenkinsfile
+    type: JenkinsPipeline
