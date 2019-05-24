@@ -15,7 +15,7 @@ MAINTAINER micacar <mica@car>
 
 # Install the required software, namely Lighttpd and
 #RUN yum install -y python-setuptools
-RUN yum -y install wget
+RUN yum -y install curl
 RUN easy_install pip 
 RUN pip install flask 
 #flask-wtf flask-babel markdown flup
@@ -23,7 +23,7 @@ RUN pip install flask
     # clean yum cache files, as they are not needed and will only make the image bigger in the end
 RUN yum clean all -y
 
-RUN wget https://raw.githubusercontent.com/uzugic/HelloWorldFlask/master/app.py
+RUN curl https://raw.githubusercontent.com/uzugic/HelloWorldFlask/master/app.py -o app.py
 
 #RUN git init
 #RUN git remote add origin https://github.com/uzugic/HelloWorldFlask.git
