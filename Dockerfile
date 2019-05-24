@@ -44,7 +44,7 @@ RUN git pull origin master
 #USER 1001
 
 # Specify the ports the final image will expose
-#EXPOSE 8080
+EXPOSE 8080
 #RUN cd HelloWorldFlask
 # Set the default CMD to print the usage of the image, if somebody does docker run
 CMD ["python", "app.py"]
