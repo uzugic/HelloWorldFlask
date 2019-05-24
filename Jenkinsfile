@@ -1,5 +1,6 @@
 def templatePath = 'https://raw.githubusercontent.com/uzugic/HelloWorldFlask/master/Dockerfile' 
 def templateName = 'HelloWorldFlask' 
+def projName = 'flask-jenkins'
 pipeline {
   //agent {
     //node {
@@ -10,12 +11,12 @@ pipeline {
     timeout(time: 2, unit: 'MINUTES') 
   }
   stages {
-    stage('preamble') {
+    stage('setup') {
         steps {
             script {
                 openshift.withCluster() {
-                  openshift.project() : "flask"
-                    openshift.withProject() {
+                  openshift.withProject() {
+                    sh "oc new-project ${projName}"
                         echo "Using project: ${openshift.project()}"
                     }
                 }
@@ -53,10 +54,11 @@ pipeline {
             openshift.withCluster() {
                 openshift.withProject() {
                   def builds = openshift.selector("bc", templateName).related('builds')
-                  timeout(5) { 
-                    builds.untilEach(1) {
-                      return (it.object().status.phase == "Complete")
-                    }
+                  echo "builds = ${builds}"
+                  //timeout(5) { 
+                    //builds.untilEach(1) {
+                      //return (it.object().status.phase == "Complete")
+                    //}
                   }
                 }
             }
@@ -69,23 +71,24 @@ pipeline {
             openshift.withCluster() {
                 openshift.withProject() {
                   def rm = openshift.selector("dc", templateName).rollout().latest()
-                  timeout(5) { 
-                    openshift.selector("dc", templateName).related('pods').untilEach(1) {
-                      return (it.object().status.phase == "Running")
-                    }
+                 // timeout(5) { 
+                   // openshift.selector("dc", templateName).related('pods').untilEach(1) {
+                     // return (it.object().status.phase == "Running")
+                    //}
+                  echo "rm = ${rm}"
                   }
                 }
             }
         }
       }
     }
-    stage('tag') {
-      steps {
-        script {
-            openshift.withCluster() {
-                openshift.withProject() {
-                  openshift.tag("${templateName}:latest", "${templateName}-staging:latest") 
-                }
+   // stage('tag') {
+    //  steps {
+      //  script {
+        //    openshift.withCluster() {
+           //     openshift.withProject() {
+             //     openshift.tag("${templateName}:latest", "${templateName}-staging:latest") 
+               // }
             }
         }
       }
