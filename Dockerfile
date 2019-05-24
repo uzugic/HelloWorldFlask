@@ -15,6 +15,7 @@ MAINTAINER micacar <mica@car>
 
 # Install the required software, namely Lighttpd and
 #RUN yum install -y python-setuptools
+RUN yum -y install wget
 RUN easy_install pip 
 RUN pip install flask 
 #flask-wtf flask-babel markdown flup
