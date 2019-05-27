@@ -1,5 +1,5 @@
 # We are basing our builder image on openshift base-centos7 image
-FROM docker-registry.default.svc:5000/app/flask
+FROM registry-console-default.router.default.svc.cluster.local/registry#/images/app/flask:latest
 
 # Inform users who's the maintainer of this builder image
 MAINTAINER micacar <mica@car>
