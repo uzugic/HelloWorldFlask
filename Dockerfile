@@ -1,5 +1,5 @@
 # We are basing our builder image on openshift base-centos7 image
-FROM registry-console-default.router.default.svc.cluster.local/registry#/images/app/flask:latest
+FROM openshift/base-centos7
 
 # Inform users who's the maintainer of this builder image
 MAINTAINER micacar <mica@car>
