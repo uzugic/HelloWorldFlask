@@ -1,5 +1,5 @@
 # We are basing our builder image on openshift base-centos7 image
-FROM registry.redhat.io/ubi7
+FROM docker-registry.default.svc:5000/flask/ubi7
 
 # Inform users who's the maintainer of this builder image
 MAINTAINER micacar <mica@car>
