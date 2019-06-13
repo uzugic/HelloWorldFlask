@@ -1,5 +1,5 @@
 # We are basing our builder image on rhel7 ubi image
-FROM docker-registry.default.svc:5000/openshift/ubi
+FROM registry.redhat.io/ubi7/ubi
 
 # Inform users who's the maintainer of this builder image
 MAINTAINER micacar <mica@car>
